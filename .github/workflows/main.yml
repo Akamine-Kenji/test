@@ -1,0 +1,15 @@
+name: Update Backlog Status
+
+on:
+  issues:
+
+jobs:
+  update-backlog:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Extract issue number
+      id: extract_issue_number
+      run: |
+        issue_number=$(echo '${{ github.event.document.body }}')
+        echo "::set-output name=issue_number::$issue_number"
