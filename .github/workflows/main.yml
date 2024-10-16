@@ -13,3 +13,5 @@ jobs:
       run: |
         issue_number=$(echo '${{ github.event.comment.body }}')
         echo "::set-output name=issue_number::$issue_number"
+        issue_body=$(echo '${{ github.event.issue.body }}')
+        echo "::set-output name=issue_body::$issue_body"
