@@ -8,14 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check issue status
-      id: check_status
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const issue = context.payload.issue;
-          return issue.state;
-    
     - name: Extract issue number
       id: extract_issue_number
       run: |
