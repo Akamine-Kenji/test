@@ -11,5 +11,5 @@ jobs:
     - name: Extract issue number
       id: extract_issue_number
       run: |
-        issue_number=$(echo '${{ github.event.document.body }}')
+        issue_number=$(echo '${{ github.event.comment.body }}')
         echo "::set-output name=issue_number::$issue_number"
