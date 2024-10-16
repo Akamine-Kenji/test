@@ -18,9 +18,10 @@ jobs:
     
     - name: Extract issue number
       id: extract_issue_number
-      if: steps.check_status.outputs.result == 'closed'
       run: |
-        issue_number=$(echo '${{ github.event.comment.body }}')
-        echo "::set-output name=issue_number::$issue_number"
-        issue_body=$(echo '${{ github.event.issue.body }}')
-        echo "::set-output name=issue_body::$issue_body"
+        if [ "${{ github.event.action }}" == "closed" ]; then
+          issue_number=$(echo '${{ github.event.comment.body }}')
+          echo "::set-output name=issue_number::$issue_number"
+          issue_body=$(echo '${{ github.event.issue.body }}')
+          echo "::set-output name=issue_body::$issue_body"
+        fi
