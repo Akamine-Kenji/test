@@ -1,7 +1,9 @@
 name: Update Backlog Status
 
 on:
-  issue_comment:
+  #issue_comment:
+  issues:
+    types: [closed]
 
 jobs:
   update-backlog:
