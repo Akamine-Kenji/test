@@ -1,17 +1,24 @@
 name: Update Backlog Status
 
 on:
-  #issue_comment:
-  issues:
-    types: [closed]
+  issue_comment:
 
 jobs:
   update-backlog:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check issue status
+      id: check_status
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const issue = context.payload.issue;
+          return issue.state;
+    
     - name: Extract issue number
       id: extract_issue_number
+      if: steps.check_status.outputs.result == 'closed'
       run: |
         issue_number=$(echo '${{ github.event.comment.body }}')
         echo "::set-output name=issue_number::$issue_number"
